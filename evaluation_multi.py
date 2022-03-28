@@ -80,7 +80,9 @@ def compute_mIoU( gt_dir, pred_dir, devkit_dir='', restore_from='' ):
             f.write('===>'+name_classes[ind_class]+':\t' + str(round(mIoUs[ind_class]*100,2)) + '\n')
         print('===>'+name_classes[ind_class]+':\t' + str(round(mIoUs[ind_class]*100,2)))
     with open(restore_from+'_mIoU.txt', 'a') as f:
-        f.write('===> mIoU: ' + str(round(np.nanmean(mIoUs)*100,2)) + '\n')
+        f.write('===> mIoU19: ' + str(round(np.nanmean(mIoUs)*100,2)) + '\n')
+        f.write('===> mIoU16: ' + str(round(   np.mean(mIoUs[[0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 15, 17, 18]])*100,2   )) + '\n')
+        f.write('===> mIoU13: ' + str(round(   np.mean(mIoUs[[0, 1, 2, 6, 7, 8, 10, 11, 12, 13, 15, 17, 18]])*100,2   )) + '\n')
 
     print('===> mIoU19: ' + str(round(   np.nanmean(mIoUs)*100,2   )))
     print('===> mIoU16: ' + str(round(   np.mean(mIoUs[[0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 15, 17, 18]])*100,2   )))
@@ -94,21 +96,32 @@ def main():
 
     if not os.path.exists(args.save):
         os.makedirs(args.save)
+    if not os.path.exists(args.save + "/model1"):
+        os.makedirs(args.save + "/model1")
+    if not os.path.exists(args.save + "/model2"):
+        os.makedirs(args.save + "/model2")
+    if not os.path.exists(args.save + "/model3"):
+        os.makedirs(args.save + "/model3")
+    if not os.path.exists(args.save + "/multi_model"):
+        os.makedirs(args.save + "/multi_model")
+    
+    if args.restore_opt1 is not None:
+        args.restore_from = args.restore_opt1
+        model1 = CreateModel(args)
+        model1.eval()
+        model1.cuda()
 
-    args.restore_from = args.restore_opt1
-    model1 = CreateModel(args)
-    model1.eval()
-    model1.cuda()
-
-    args.restore_from = args.restore_opt2
-    model2 = CreateModel(args)
-    model2.eval()
-    model2.cuda()
-
-    args.restore_from = args.restore_opt3
-    model3 = CreateModel(args)
-    model3.eval()
-    model3.cuda()
+    if args.restore_opt2 is not None:
+        args.restore_from = args.restore_opt2
+        model2 = CreateModel(args)
+        model2.eval()
+        model2.cuda()
+        
+    if args.restore_opt3 is not None:
+        args.restore_from = args.restore_opt3
+        model3 = CreateModel(args)
+        model3.eval()
+        model3.cuda()
 
     targetloader = CreateTrgDataLoader(args)
 
@@ -131,49 +144,58 @@ def main():
                 mean_img = IMG_MEAN.repeat(B,1,H,W)             # 2. get mean image
             image = image.clone() - mean_img                    # 3, image - mean_img
             image = Variable(image).cuda()
- 
-            # forward1
-            output1 = model1(image)
-            output1 = nn.functional.softmax(output1, dim=1)
-            
-            # save pred of model1
-            output = nn.functional.interpolate(output1, (1024, 2048), mode='bilinear', align_corners=True).cpu().data[0].numpy()
-            #output = nn.functional.upsample(   output, (1024, 2048), mode='bilinear', align_corners=True).cpu().data[0].numpy()
-            output = output.transpose(1,2,0)
-            output_nomask = np.asarray( np.argmax(output, axis=2), dtype=np.uint8 )
-            output_col = colorize_mask(output_nomask)
-            output_nomask = Image.fromarray(output_nomask)    
-            output_nomask.save(  '%s/%s/%s' % (args.save, "model1", name)  )
-            output_col.save(  '%s/%s/%s_color.png' % (args.save, "model1", name.split('.')[0])  ) 
-            
-            # forward2
-            output2 = model2(image)
-            output2 = nn.functional.softmax(output2, dim=1)
-            
-            # save pred of model2
-            output = nn.functional.interpolate(output2, (1024, 2048), mode='bilinear', align_corners=True).cpu().data[0].numpy()
-            #output = nn.functional.upsample(   output, (1024, 2048), mode='bilinear', align_corners=True).cpu().data[0].numpy()
-            output = output.transpose(1,2,0)
-            output_nomask = np.asarray( np.argmax(output, axis=2), dtype=np.uint8 )
-            output_col = colorize_mask(output_nomask)
-            output_nomask = Image.fromarray(output_nomask)    
-            output_nomask.save(  '%s/%s/%s' % (args.save, "model2", name)  )
-            output_col.save(  '%s/%s/%s_color.png' % (args.save, "model2", name.split('.')[0])  ) 
 
-            # forward3
-            output3 = model3(image)
-            output3 = nn.functional.softmax(output3, dim=1)
-            
-            # save pred of model3
-            output = nn.functional.interpolate(output3, (1024, 2048), mode='bilinear', align_corners=True).cpu().data[0].numpy()
-            #output = nn.functional.upsample(   output, (1024, 2048), mode='bilinear', align_corners=True).cpu().data[0].numpy()
-            output = output.transpose(1,2,0)
-            output_nomask = np.asarray( np.argmax(output, axis=2), dtype=np.uint8 )
-            output_col = colorize_mask(output_nomask)
-            output_nomask = Image.fromarray(output_nomask)    
-            output_nomask.save(  '%s/%s/%s' % (args.save, "model3", name)  )
-            output_col.save(  '%s/%s/%s_color.png' % (args.save, "model3", name.split('.')[0])  ) 
-            
+            if args.restore_opt1 is not None:
+                # forward1
+                output1 = model1(image)
+                output1 = nn.functional.softmax(output1, dim=1)
+
+                # save pred of model1
+                output = nn.functional.interpolate(output1, (1024, 2048), mode='bilinear', align_corners=True).cpu().data[0].numpy()
+                #output = nn.functional.upsample(   output, (1024, 2048), mode='bilinear', align_corners=True).cpu().data[0].numpy()
+                output = output.transpose(1,2,0)
+                output_nomask = np.asarray( np.argmax(output, axis=2), dtype=np.uint8 )
+                output_col = colorize_mask(output_nomask)
+                output_nomask = Image.fromarray(output_nomask)
+                output_nomask.save(  '%s/%s/%s' % (args.save, "model1", name)  )
+                output_col.save(  '%s/%s/%s_color.png' % (args.save, "model1", name.split('.')[0])  )
+            else:
+                output1 = 0
+
+            if args.restore_opt2 is not None:
+                # forward2
+                output2 = model2(image)
+                output2 = nn.functional.softmax(output2, dim=1)
+
+                # save pred of model2
+                output = nn.functional.interpolate(output2, (1024, 2048), mode='bilinear', align_corners=True).cpu().data[0].numpy()
+                #output = nn.functional.upsample(   output, (1024, 2048), mode='bilinear', align_corners=True).cpu().data[0].numpy()
+                output = output.transpose(1,2,0)
+                output_nomask = np.asarray( np.argmax(output, axis=2), dtype=np.uint8 )
+                output_col = colorize_mask(output_nomask)
+                output_nomask = Image.fromarray(output_nomask)    
+                output_nomask.save(  '%s/%s/%s' % (args.save, "model2", name)  )
+                output_col.save(  '%s/%s/%s_color.png' % (args.save, "model2", name.split('.')[0])  )
+            else:
+                output2 = 0
+
+            if args.restore_opt3 is not None:
+                # forward3
+                output3 = model3(image)
+                output3 = nn.functional.softmax(output3, dim=1)
+
+                # save pred of model3
+                output = nn.functional.interpolate(output3, (1024, 2048), mode='bilinear', align_corners=True).cpu().data[0].numpy()
+                #output = nn.functional.upsample(   output, (1024, 2048), mode='bilinear', align_corners=True).cpu().data[0].numpy()
+                output = output.transpose(1,2,0)
+                output_nomask = np.asarray( np.argmax(output, axis=2), dtype=np.uint8 )
+                output_col = colorize_mask(output_nomask)
+                output_nomask = Image.fromarray(output_nomask)    
+                output_nomask.save(  '%s/%s/%s' % (args.save, "model3", name)  )
+                output_col.save(  '%s/%s/%s_color.png' % (args.save, "model3", name.split('.')[0])  )
+            else:
+                output3 = 0
+
              # model confidence fusion
             a, b = 0.3333, 0.3333
             output = a*output1 + b*output2 + (1.0-a-b)*output3
@@ -186,16 +208,18 @@ def main():
             output_nomask = np.asarray( np.argmax(output, axis=2), dtype=np.uint8 )
             output_col = colorize_mask(output_nomask)
             output_nomask = Image.fromarray(output_nomask)    
-            name = name[0].split('/')[-1]
             output_nomask.save(  '%s/%s/%s' % (args.save, "multi_model", name)  )
             output_col.save(  '%s/%s/%s_color.png' % (args.save, "multi_model", name.split('.')[0])  ) 
             
     # scores computed and saved
     # ------------------------------------------------- #
-    compute_mIoU( args.gt_dir, args.save, args.devkit_dir, args.restore_from + "model1" )
-    compute_mIoU( args.gt_dir, args.save, args.devkit_dir, args.restore_from + "model2" ) 
-    compute_mIoU( args.gt_dir, args.save, args.devkit_dir, args.restore_from + "model3" ) 
-    compute_mIoU( args.gt_dir, args.save, args.devkit_dir, args.restore_from + "multi_model" ) 
+    if args.restore_opt1 is not None:
+        compute_mIoU( args.gt_dir, args.save + "/model1", args.devkit_dir, args.save + "/model1" )
+    if args.restore_opt2 is not None:
+        compute_mIoU( args.gt_dir, args.save + "/model2", args.devkit_dir, args.save + "/model2" )
+    if args.restore_opt3 is not None:
+        compute_mIoU( args.gt_dir, args.save + "/model3", args.devkit_dir, args.save + "/model3" ) 
+    compute_mIoU( args.gt_dir, args.save + "/multi_model", args.devkit_dir, args.save + "/multi_model" ) 
 
 
 if __name__ == '__main__':
