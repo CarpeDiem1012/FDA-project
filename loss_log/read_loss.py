@@ -1,6 +1,6 @@
 import scipy.io
 
-data = scipy.io.loadmat('./loss_log_01.mat')
+data = scipy.io.loadmat('./loss_log_09.mat')
 print('Number of data:')
 print(data['loss_train'].reshape(-1).shape)
 # print(data.keys())
@@ -15,4 +15,4 @@ plt.legend()
 plt.xlabel('steps//1000')
 plt.ylabel('loss')
 plt.title('model training')
-fig.savefig('./loss_log_01.png')
+fig.savefig('./loss_log_09.png')

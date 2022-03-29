@@ -6,7 +6,6 @@ __pycache__/*
 
 # exceptions
 !.gitignore
-!checkpoints/Beta_01/gta5_30000.pth
 !results/Beta_01/*.txt
 
 
