@@ -6,7 +6,7 @@ python3 train.py --snapshot-dir='./checkpoints/Beta_05' --init-weights='./checkp
 python3 train.py --snapshot-dir='./checkpoints/Beta_09' --init-weights='./checkpoints/init_weight/DeepLab_init.pth' --num-steps=32000 --num-steps-stop=30000 --print-freq=1000 --save-pred-every=100 --LB=0.09 --entW=0.005 --ita=2.0 --switch2entropy=0 --data-dir='../../data/GTA5' --data-dir-target='../../data/cityscapes' --matname='loss_log_09.mat'
 
 - For (multi)Beta evaluation
-python3 evaluation_multi.py --model='DeepLab' --save='./results/Beta_01' --restore-opt1="./checkpoints/Beta_01/gta5_30000" --data-dir-target='../../data/cityscapes' --gt_dir='../../data/cityscapes/gtFine/val'
+python3 evaluation_multi.py --model='DeepLab' --save='./results/Beta_01' --restore-opt1="./checkpoints/Beta_01/gta5_79000" --data-dir-target='../../data/cityscapes' --gt_dir='../../data/cityscapes/gtFine/val'
 
 python3 evaluation_multi.py --model='DeepLab' --save='./results/model_ours' --restore-opt1="./checkpoints/Beta_01/gta5_30000" --restore-opt2="./checkpoints/Beta_05/gta5_30000" --restore-opt3="./checkpoints/Beta_09/gta5_30000" --data-dir-target='../../data/cityscapes' --gt_dir='../../data/cityscapes/gtFine/val'
 
