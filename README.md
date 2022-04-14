@@ -18,7 +18,11 @@ Domain adaptation via *style transfer* made easy using FFT. FDA needs **no deep 
 <img src="https://github.com/YanchaoYang/FDA/blob/master/demo_images/FDA.png" width = "600" alt="" align=center />
 
 ## 2.2. Traning Loss for Domain Adaptaion
-The loss function is contributed by two parts. 
+The loss function is contributed by two parts.
+
+$$
+C(\phi ^ {w} D^ {s\rightarrow t}, D^ {t} )= c_ {ce} ( \phi ^ {w} D^ {s\rightarrow t} )+  \lambda _ {ent} c_ {ent} ( \phi ^ {w} D^ {t} ) 
+$$
 
 # 3. Reproduction Results
 
