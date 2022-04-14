@@ -1,4 +1,7 @@
 # big files
+*.zip
+eval_pth
+DL_domain_adaptation
 checkpoints/*
 results/*
 .*
@@ -6,6 +9,5 @@ __pycache__/*
 
 # exceptions
 !.gitignore
-!results/Beta_01/*.txt
-
+!results/*/*.txt
 

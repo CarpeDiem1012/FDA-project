@@ -1,0 +1,199 @@
+===>road:	nan
+===>sidewalk:	nan
+===>building:	nan
+===>wall:	nan
+===>fence:	nan
+===>pole:	nan
+===>light:	nan
+===>sign:	nan
+===>vegetation:	nan
+===>terrain:	nan
+===>sky:	nan
+===>person:	nan
+===>rider:	nan
+===>car:	nan
+===>truck:	nan
+===>bus:	nan
+===>train:	nan
+===>motocycle:	nan
+===>bicycle:	nan
+===> mIoU: nan
+===>road:	nan
+===>sidewalk:	nan
+===>building:	nan
+===>wall:	nan
+===>fence:	nan
+===>pole:	nan
+===>light:	nan
+===>sign:	nan
+===>vegetation:	nan
+===>terrain:	nan
+===>sky:	nan
+===>person:	nan
+===>rider:	nan
+===>car:	nan
+===>truck:	nan
+===>bus:	nan
+===>train:	nan
+===>motocycle:	nan
+===>bicycle:	nan
+===> mIoU: nan
+===>road:	nan
+===>sidewalk:	nan
+===>building:	nan
+===>wall:	nan
+===>fence:	nan
+===>pole:	nan
+===>light:	nan
+===>sign:	nan
+===>vegetation:	nan
+===>terrain:	nan
+===>sky:	nan
+===>person:	nan
+===>rider:	nan
+===>car:	nan
+===>truck:	nan
+===>bus:	nan
+===>train:	nan
+===>motocycle:	nan
+===>bicycle:	nan
+===> mIoU: nan
+===>road:	nan
+===>sidewalk:	nan
+===>building:	nan
+===>wall:	nan
+===>fence:	nan
+===>pole:	nan
+===>light:	nan
+===>sign:	nan
+===>vegetation:	nan
+===>terrain:	nan
+===>sky:	nan
+===>person:	nan
+===>rider:	nan
+===>car:	nan
+===>truck:	nan
+===>bus:	nan
+===>train:	nan
+===>motocycle:	nan
+===>bicycle:	nan
+===> mIoU: nan
+===>road:	0.0
+===>sidewalk:	0.0
+===>building:	0.0
+===>wall:	0.0
+===>fence:	0.0
+===>pole:	nan
+===>light:	0.0
+===>sign:	nan
+===>vegetation:	nan
+===>terrain:	nan
+===>sky:	nan
+===>person:	nan
+===>rider:	nan
+===>car:	0.0
+===>truck:	nan
+===>bus:	0.0
+===>train:	nan
+===>motocycle:	nan
+===>bicycle:	nan
+===> mIoU: 0.0
+===>road:	0.0
+===>sidewalk:	0.0
+===>building:	0.0
+===>wall:	0.0
+===>fence:	0.0
+===>pole:	nan
+===>light:	0.0
+===>sign:	nan
+===>vegetation:	nan
+===>terrain:	nan
+===>sky:	nan
+===>person:	nan
+===>rider:	nan
+===>car:	0.0
+===>truck:	0.0
+===>bus:	0.0
+===>train:	nan
+===>motocycle:	nan
+===>bicycle:	nan
+===> mIoU: 0.0
+10 / 1: nan
+20 / 1: nan
+30 / 1: nan
+40 / 1: nan
+50 / 1: nan
+60 / 1: nan
+70 / 1: nan
+80 / 1: nan
+90 / 1: nan
+100 / 1: nan
+110 / 1: nan
+120 / 1: nan
+130 / 1: nan
+140 / 1: nan
+150 / 1: nan
+160 / 1: nan
+170 / 1: nan
+180 / 1: nan
+190 / 1: nan
+200 / 1: nan
+210 / 1: nan
+220 / 1: nan
+230 / 1: nan
+240 / 1: nan
+250 / 1: nan
+260 / 1: nan
+270 / 1: nan
+280 / 1: nan
+290 / 1: nan
+300 / 1: nan
+310 / 1: nan
+320 / 1: nan
+330 / 1: nan
+340 / 1: nan
+350 / 1: nan
+360 / 1: nan
+370 / 1: nan
+380 / 1: nan
+390 / 1: nan
+===>road:	0.0
+===>sidewalk:	0.0
+===>building:	0.14
+===>wall:	0.13
+===>fence:	0.0
+===>pole:	0.0
+===>light:	0.0
+===>sign:	nan
+===>vegetation:	nan
+===>terrain:	nan
+===>sky:	nan
+===>person:	0.0
+===>rider:	nan
+===>car:	0.0
+===>truck:	0.0
+===>bus:	0.0
+===>train:	0.0
+===>motocycle:	nan
+===>bicycle:	nan
+===> mIoU: 0.02
+===>road:	0.0
+===>sidewalk:	0.0
+===>building:	0.0
+===>wall:	0.0
+===>fence:	0.0
+===>pole:	0.0
+===>light:	0.0
+===>sign:	nan
+===>vegetation:	nan
+===>terrain:	nan
+===>sky:	nan
+===>person:	nan
+===>rider:	nan
+===>car:	0.0
+===>truck:	0.0
+===>bus:	0.0
+===>train:	nan
+===>motocycle:	nan
+===>bicycle:	nan
+===> mIoU: 0.0

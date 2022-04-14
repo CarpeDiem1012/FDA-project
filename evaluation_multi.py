@@ -26,6 +26,7 @@ def colorize_mask(mask):
     return new_mask
 
 def fast_hist(a, b, n):
+    # a = label, b = pred 
     k = (a>=0) & (a<n)
     return np.bincount( n*a[k].astype(int)+b[k], minlength=n**2 ).reshape(n, n)
 

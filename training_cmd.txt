@@ -12,5 +12,7 @@ python3 evaluation_multi.py --model='DeepLab' --save='./results/model_ours' --re
 
 python3 evaluation_multi.py --model='DeepLab' --save='./results/model_paper' --restore-opt1="./checkpoints/model_paper/gta2city_LB_0_01" --restore-opt2="./checkpoints/model_paper/gta2city_LB_0_05" --restore-opt3="./checkpoints/model_paper/gta2city_LB_0_09" --data-dir-target='../../data/cityscapes' --gt_dir='../../data/cityscapes/gtFine/val'
 
+python3 evaluation_multi_withmiou.py --model='DeepLab' --save='./results/model_acdc' --restore-opt1="./checkpoints/Beta_01/gta5_30000" --restore-opt2="./checkpoints/Beta_05/gta5_30000" --restore-opt3="./checkpoints/Beta_09/gta5_30000"
+
 - For mIoU evaluation
 python3 mIoU.py --model='DeepLab' --save='./results/Beta_01' --restore-opt1="./checkpoints/Beta_01/gta5_30000" --data-dir-target='../../data/cityscapes' --gt_dir='../../data/cityscapes/gtFine/val'
