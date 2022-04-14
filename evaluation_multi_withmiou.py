@@ -34,7 +34,9 @@ def fast_hist(a, b, n):
     return np.bincount( n*a[k].astype(int)+b[k], minlength=n**2 ).reshape(n, n)
 
 def per_class_iu(hist):
-    return np.diag(hist) / ( hist.sum(1)+hist.sum(0)-np.diag(hist) )
+    iou = np.diag(hist) / ( hist.sum(1)+hist.sum(0)-np.diag(hist) )
+    iou[np.isnan(iou)] = 0.
+    return iou
 
 def label_mapping(input, mapping):
     output = np.copy(input)
@@ -111,9 +113,9 @@ def compute_mIoU_new(outputs, dataloader, restore_from='' ):
             _, label, name = batch
             label = label_mapping(label, mapping)
             pred = outputs.transpose(2,0,1)[ind:ind+1,:,:]
-            # print('{}, {}'.format('Prediction:', pred.shape))
-            # print('{}, {}'.format('Outputs:', outputs.shape))
-            # print('{}, {}'.format('Label:', label.shape))
+            # print('{}, {}'.format('Prediction:', pred.shape)) # (1,512,1024)
+            # print('{}, {}'.format('Outputs:', outputs.shape)) # (512,1024,len)
+            # print('{}, {}'.format('Label:', label.shape)) # (1,512,1024)
             
             if len(label.flatten()) != len(pred.flatten()):
                 print('Skipping: len(gt) = {:d}, len(pred) = {:d}, index= {:d}'.format(len(label.flatten()), len(pred.flatten()), ind))
@@ -285,7 +287,7 @@ def main():
                               
     with torch.no_grad():
         for index, batch in enumerate(targetloader):
-            if index==2: break
+            # if index==2: break
             if index % 100 == 0:
                 print( '%d processed' % index )
             image, _, name = batch                              # 1. get image
@@ -301,10 +303,12 @@ def main():
                 # forward1
                 output1 = model1(image)
                 output1 = nn.functional.softmax(output1, dim=1)
-
+                # print('{} {}'.format('output_after_softmax_shape', output1.shape)) # output_after_softmax_shape torch.Size([1, 19, 65, 129])
+                
                 # save pred of model1
                 output = nn.functional.interpolate(output1, (512, 1024), mode='bilinear', align_corners=True).cpu().data[0].numpy()
                 #output = nn.functional.upsample(   output, (1024, 2048), mode='bilinear', align_corners=True).cpu().data[0].numpy()
+                # print('{} {}'.format('output_after_interpolate_shape', output.shape)) # output_after_interpolate_shape (19, 512, 1024)
                 output = output.transpose(1,2,0)
                 output_nomask = np.asarray( np.argmax(output, axis=2), dtype=np.uint8 )
                 
@@ -327,7 +331,6 @@ def main():
                 output2 = nn.functional.softmax(output2, dim=1)
 
                 # save pred of model2
-                print('{} {}'.format('output_shape', output2.shape))
                 output = nn.functional.interpolate(output2, (512, 1024), mode='bilinear', align_corners=True).cpu().data[0].numpy()
                 #output = nn.functional.upsample(   output, (1024, 2048), mode='bilinear', align_corners=True).cpu().data[0].numpy()
                 output = output.transpose(1,2,0)
@@ -402,7 +405,7 @@ def main():
     if args.restore_opt3 is not None:
         compute_mIoU_new(outputall_3, targetloader, args.save + "/acdc_model3" )
     #     compute_mIoU( args.gt_dir, args.save + "/model3", args.devkit_dir, args.save + "/model3" ) 
-    compute_mIoU_new(outputall_3, targetloader, args.save + "/acdc_multi_model" )
+    compute_mIoU_new(outputall_avg, targetloader, args.save + "/acdc_multi_model" )
     # compute_mIoU( args.gt_dir, args.save + "/multi_model", args.devkit_dir, args.save + "/multi_model" ) 
 
 
