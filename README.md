@@ -1,6 +1,11 @@
-# FDA: Fourier Domain Adaptation for Semantic Segmentation.
+# A Reproduction of FDA: Fourier Domain Adaptation for Semantic Segmentation
+by _Junhan Wen_ and _Liangchen Sui (l.sui@student.tudelft.nl)_
 
-This is the Pytorch implementation of our [FDA](https://openaccess.thecvf.com/content_CVPR_2020/papers/Yang_FDA_Fourier_Domain_Adaptation_for_Semantic_Segmentation_CVPR_2020_paper.pdf) paper published in CVPR 2020.
+This is a Pytorch reproduction of [2020 CVPR paper](https://openaccess.thecvf.com/content_CVPR_2020/papers/Yang_FDA_Fourier_Domain_Adaptation_for_Semantic_Segmentation_CVPR_2020_paper.pdf) based on [open source github code](https://github.com/YanchaoYang/FDA).
+
+# 1. Introduction
+
+# 2. Paper Overview
 
 Domain adaptation via *style transfer* made easy using Fourier Transform. FDA needs **no deep networks** for style transfer, and involves **no adversarial training**. Below is the diagram of the proposed Fourier Domain Adaptation method:
 
@@ -11,6 +16,11 @@ Step 2: Replace the low frequency part of the source amplitude with that from th
 Step 3: Apply inverse FFT to the modified source spectrum.
 
 ![Image of FDA](https://github.com/YanchaoYang/FDA/blob/master/demo_images/FDA.png)
+
+# 3. Reproduction Results
+
+
+# 4. Ablation Study with [Dataset ACDC](https://acdc.vision.ee.ethz.ch/other/ACDC_the_Adverse_Conditions_Dataset_with_Correspondences_for_semantic_driving_scene_understanding-Sakaridis+Dai+Van_Gool-ICCV_21.pdf)
 
 # Usage
 
@@ -80,6 +90,8 @@ Step 3: Apply inverse FFT to the modified source spectrum.
    Pretrained models on the Synthia -> CityScapes task using VGG backbone [link.](https://drive.google.com/file/d/1SC7sxKtic_7ClFmAZDlrBqRaL0pvKYZ8/view?usp=sharing)
    
    
-**Acknowledgment**
+**Reference**
 
-Code adapted from [BDL.](https://github.com/liyunsheng13/BDL)
+[1] 
+[2]
+[3]
