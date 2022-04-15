@@ -23,7 +23,9 @@ The loss function is contributed by two parts. The first part is a segmentation 
 ![img](https://github.com/CarpeDiem1012/FDA-project/blob/master/demo_images/1.png)
 
 # 3. Reproduction Results
-We , which is trained . The results 
+The results reproduced is based on the first 3 rows of Table 1 in the paper. It is trained from scratch in GTA5 and Cityscapes datasets under 3 different Beat (0.01, 0.05, 0.09) without self-supervised loops. The main is to find out the effect of the only hyperparameter Beta during FDA. Due to limited computational resources, we reduce number of steps from 150000 to 32000, where the training loss are already asymptoticly converging. More detailed configurations are listed in [training and eval configutation](https://github.com/CarpeDiem1012/FDA-project/blob/master/training_cmd.txt) 
+<img src="https://github.com/CarpeDiem1012/FDA-project/blob/master/demo_images/sheet1.png" alt="reproduction sheet" align=center />
+
 
 # 4. Ablation Study with [Dataset ACDC](https://acdc.vision.ee.ethz.ch/other/ACDC_the_Adverse_Conditions_Dataset_with_Correspondences_for_semantic_driving_scene_understanding-Sakaridis+Dai+Van_Gool-ICCV_21.pdf)
 
@@ -37,7 +39,7 @@ The original paper builds upon the hypothesis that . Our ablation study further 
 <img src="https://github.com/CarpeDiem1012/FDA-project/blob/master/demo_acdc/acdc.png" width = "600" alt="original ACDC image" align=center />
 <img src="https://github.com/CarpeDiem1012/FDA-project/blob/master/demo_acdc/acdc_in_tar.png" width = "600" alt="ACDC image with Cityscapes style" align=center />
 <img src="https://github.com/CarpeDiem1012/FDA-project/blob/master/demo_acdc/source.png" width = "600" alt="Cityscapes image" align=center />
-<img src="https://github.com/CarpeDiem1012/FDA-project/blob/master/demo_acdc/source_in_tar.png" width = "600" alt="GTA5 image with Cityscapes style" align=center />
+<img src="https://github.com/CarpeDiem1012/FDA-project/blob/master/demo_acdc/src_in_tar.png" width = "600" alt="GTA5 image with Cityscapes style" align=center />
 
 The above command should output:
 ===> mIoU19: 50.45
