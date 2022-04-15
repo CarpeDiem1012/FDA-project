@@ -25,11 +25,7 @@ The loss function is contributed by two parts. The first part is a segmentation 
 # 3. Reproduction Results
 The results reproduced is based on the first 3 rows of Table 1 in the paper. It is trained from scratch in GTA5 and Cityscapes datasets under 3 different Beat (0.01, 0.05, 0.09) without self-supervised loops. The main is to find out the effect of the only hyperparameter Beta during FDA. Due to limited computational resources, we reduce number of steps from 150000 to 32000, where the training loss are already asymptoticly converging. More detailed configurations are listed in [training and eval configutation](https://github.com/CarpeDiem1012/FDA-project/blob/master/training_cmd.txt)
 
-<img src="https://github.com/CagrpeDiem1012/FDA-project/blob/master/demo_images/sheet1.png" alt="reproduction sheet" align=center />
 
-_reproduction results_
-
-<img src="https://github.com/CagrpeDiem1012/FDA-project/blob/master/demo_images/sheet2.png" alt="_original sheet" align=center />
 
 _original results_
 
