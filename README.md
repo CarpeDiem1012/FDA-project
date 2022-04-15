@@ -55,6 +55,15 @@ The results reproduced is based on the first 3 rows of Table 1 in the paper. It 
 
 ***
 
+<div align=center>
+<img src="https://github.com/CarpeDiem1012/FDA-project/blob/master/demo_images/frankfurt_000000_001016_gtFine_color.png" height="150"/><img src="https://github.com/CarpeDiem1012/FDA-project/blob/master/demo_images/frankfurt_000000_001016_leftImg8bit_color.png" height="150"/><img src="https://github.com/CarpeDiem1012/FDA-project/blob/master/demo_images/frankfurt_000000_001016_leftImg8bit_color%20(1).png" height="150"/>
+</div>
+<div align=center>
+   segmentation (ground truth, reproduction, original)
+</div>
+
+***
+
 Our reproduction results shows 25% average drop on mIoU compared to the original results, which is probably caused by lack of training iterations. Despite an imperfect reproduction, a similar observation can be that changing Beta in a reasonable range has little impact on the model performance, which is aligned with the conclusion of original papar.
 
 # 4. Ablation Study with [Dataset ACDC](https://acdc.vision.ee.ethz.ch/other/ACDC_the_Adverse_Conditions_Dataset_with_Correspondences_for_semantic_driving_scene_understanding-Sakaridis+Dai+Van_Gool-ICCV_21.pdf)
@@ -80,6 +89,15 @@ then a generally nice performance should also appear on adapted images from ACDC
 
 <div align=center>
    ablation results
+</div>
+
+***
+
+<div align=center>
+<img src="https://github.com/CarpeDiem1012/FDA-project/blob/master/demo_images/GOPR0351_frame_000165_gt_labelColor.png" height="150"/><img src="https://github.com/CarpeDiem1012/FDA-project/blob/master/demo_images/GOPR0351_frame_000165_rgb_anon_color.png" height="150"/>
+</div>
+<div align=center>
+   segmentation (ground truth, ablation)
 </div>
 
 ***
