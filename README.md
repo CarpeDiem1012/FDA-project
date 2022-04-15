@@ -1,5 +1,5 @@
 # A Reproduction of FDA: Fourier Domain Adaptation for Semantic Segmentation
-by _Junhan Wen_ and _Liangchen Sui (l.sui@student.tudelft.nl)_
+by _Junhan Wen (Junhan.Wen@tudelft.nl)_ and _Liangchen Sui (l.sui@student.tudelft.nl)_
 
 This is a Pytorch reproduction of [2020 CVPR paper](https://openaccess.thecvf.com/content_CVPR_2020/papers/Yang_FDA_Fourier_Domain_Adaptation_for_Semantic_Segmentation_CVPR_2020_paper.pdf) based on [open source github code](https://github.com/YanchaoYang/FDA).
 
@@ -34,7 +34,7 @@ The results reproduced is based on the first 3 rows of Table 1 in the paper. It 
 </div>
 
 <div align=center>
-   training loss
+   training loss (Beta = 0.01, 0.05, 0.09)
 </div>
 
 ***
