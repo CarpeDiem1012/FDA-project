@@ -20,7 +20,7 @@ Domain adaptation via *style transfer* made easy using FFT. FDA needs **no deep 
 </div>
 
 ## 2.2. Traning Loss for Domain Adaptaion
-The loss function is contributed by two parts. The first part is a segmentation loss on the source images adapted to target domain, using cross-entrooy with labels of original source images and predictions on adapted source images. The second part is a self-entropy on unannotated target images with predictions on target images as labels of themselves, which regularizes the model decision boundary to be more determined.
+The loss function is contributed by two parts. The first part is a segmentation loss on the source images adapted to target domain, using cross-entropy with labels of original source images and predictions on adapted source images. The second part is a self-entropy on unannotated target images with predictions on target images as labels of themselves, which regularizes the model decision boundary to be more determined.
 
 <div align=center>
 <img src="https://github.com/CarpeDiem1012/FDA-project/blob/master/demo_images/1.png" alt="loss">
